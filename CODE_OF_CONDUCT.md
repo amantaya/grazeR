@@ -59,7 +59,7 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by emailing Andrew Antaya at[aantaya@arizona.edu](mailto:aantaya@arizona.edu). To report an issue involving Andrew Antaya, please contact the University of Arizona's Office of Institutional Equity and Compliance at 520-621-9449 or by emailing [equity@arizona.edu](mailto:equity@arizona.edu). All complaints will be reviewed and investigated promptly and fairly.
+reported by emailing Andrew Antaya at [aantaya@arizona.edu](mailto:aantaya@arizona.edu). To report an issue involving Andrew Antaya, please contact the University of Arizona's Office of Institutional Equity and Compliance at 520-621-9449 or by emailing [equity@arizona.edu](mailto:equity@arizona.edu). All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the reporter of any incident.
 
