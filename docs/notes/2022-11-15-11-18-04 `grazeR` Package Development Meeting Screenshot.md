@@ -1,7 +1,7 @@
 # 2022-11-15-11-18-04 `grazeR` Package Development Meeting Screenshot
 Created: 2022-11-15 11:18:04
 
-![](Pasted%20image%2020221115111805.png)
+![](docs/images/Pasted%20image%2020221115111805.png)
 
 `cParameter` are global qualifiers
 
