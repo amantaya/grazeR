@@ -41,7 +41,8 @@ vignettes/*.pdf
 
 # Obsidian
 .Obsidian
-/docs/templates
+docs/templates
+docs/images/
 
 # data
 /data
