@@ -14,6 +14,53 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Setup
+
+```{r Setup}
+library(tidyverse)
+getwd()
+proj_get()
+```
+
+## Load Data
+
+```{r Load Data}
+df <- openxlsx::read.xlsx(
+  normalizePath("../data-raw/vgs-export.xlsx"),
+  sheet = "Frequency (by quadrat)")
+
+print(df)
+```
+
+## Wrangle
+
+```{r label = print column names}
+colnames(df)
+```
+
+
+```{r remove columns}
+df <- df %>% 
+  dplyr::mutate(Allotment = 
+                   stringr::str_split(
+                     Ancestry, " > ")[[1]][1],
+                Pasture = 
+                   stringr::str_split(
+                     Ancestry, " > ")[[1]][2])
+```
+
+
+```{r}
+
+```
+
+## Plot
+
+```{r Plot}
+
+```
+
+
 ```{r setup}
 library(grazeR)
 ```
