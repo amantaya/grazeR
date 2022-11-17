@@ -1,2 +1,7 @@
 ^grazeR\.Rproj$
 ^\.Rproj\.user$
+^.github
+^.obisidian
+^LICENSE\.md$
+^README\.Rmd$
+^data-raw$
