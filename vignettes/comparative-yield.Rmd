@@ -14,9 +14,47 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r}
-readxl::
+## Setup
+
+```{r setup}
+library("tidyverse")
 ```
+
+## Load Data
+
+```{r load data}
+df <- openxlsx::read.xlsx(
+  normalizePath("./data-raw/vgs-export.xlsx"),
+  sheet = "DWR (by quadrat)")
+print(df)
+```
+
+## Wrangle
+
+```{r print column names}
+colnames(df)
+```
+
+```{r}
+# df %>% dplyr::pull("Ancestry")
+
+df %>% slice_head()
+```
+
+
+```{r remove columns}
+df %>% 
+  dplyr::mutate(Allotment =
+                  stringr::str_extract(Ancestry,
+                                       ".*(?=>)")) %>% 
+  dplyr::pull(Allotment)
+```
+
+## Analysis
+
+
+
+## Plot
 
 ```{r setup}
 library(grazeR)
