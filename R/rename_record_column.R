@@ -9,7 +9,8 @@
 #' df <- data.frame(Record = 1)
 #' rename_record_column(df)
 #'
-rename_record_column <- function(df) {
-  stopifnot(is.data.frame(df))
-dplyr::rename(df, Sample = "Record")
-}
+  #' @export
+  rename_record_column <- function(df) {
+    stopifnot(is.data.frame(df))
+  dplyr::rename(df, Sample = "Record")
+  }
