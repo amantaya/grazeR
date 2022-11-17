@@ -1,0 +1,39 @@
+---
+title: "point-ground-cover"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{point-ground-cover}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(grazeR)
+library(tidyverse)
+
+```
+
+```{r}
+pgc_raw<- openxlsx::read.xlsx(paste0(dirname(getwd())
+,"/data-raw/vgs-export.xlsx"),
+                    sheet="Point Ground Cover")
+pgc_raw$Date <- lubridate::mdy(pgc_raw$Date)
+
+pgc_raw <- pgc_raw %>% mutate(Year = lubridate::year(Date))
+pgc_raw_MostRecentYear <- pgc_raw %>% filter(Year ==max(pgc_raw$Year)) 
+unique(pgc_raw_MostRecentYear$Ancestry)
+
+pgc_raw_MostRecentYear %>% group_by(Ancestry,SiteID,SpeciesName) %>% summarise(count=n()) %>% group_by(Ancestry,SiteID) %>% mutate(Percent = round(count/sum(count),digits = 2)*100)
+pgc_raw_MostRecentYear %>% group_by(Ancestry,SiteID,Transect,SpeciesName) %>% summarise(count=n()) %>% group_by(Ancestry,SiteID,SpeciesName) %>% summarise(Average = mean(count,na.rm = T))%>% group_by(Ancestry,SiteID) %>% mutate(Percent = round(Average/sum(Average),digits = 2)*100)
+```
+```{r}
+dirname(getwd())
+```
+
