@@ -47,3 +47,4 @@ docs/images/
 # data
 /data
 inst/doc
+data-raw/vgs-export.xlsx
