@@ -45,7 +45,5 @@ docs/templates
 docs/images/
 
 # data
-/data
-inst/doc
 data-raw/vgs-export.xlsx
 data-raw/~$vgs-export.xlsx
