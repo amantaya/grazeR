@@ -20,46 +20,68 @@ knitr::opts_chunk$set(
 library(tidyverse)
 getwd()
 proj_get()
+rm(list = ls(all = TRUE))
 ```
 
 ## Load Data
 
 ```{r Load Data}
-df <- openxlsx::read.xlsx(
+raw_data <- openxlsx::read.xlsx(
   normalizePath("../data-raw/vgs-export.xlsx"),
   sheet = "Frequency (by quadrat)")
 
-print(df)
+print(raw_data)
 ```
 
 ## Wrangle
 
 ```{r label = print column names}
-colnames(df)
+colnames(raw_data)
 ```
 
 
 ```{r remove columns}
-df <- df %>% 
+df <- raw_data %>% 
   dplyr::mutate(Allotment = 
                    stringr::str_split(
                      Ancestry, " > ")[[1]][1],
                 Pasture = 
                    stringr::str_split(
                      Ancestry, " > ")[[1]][2])
+split_ancestory_columnn
+raw_data %>% 
+dplyr:: mutate(Allotment = 
+                        stringr::str_extract(Ancestry,".*(?=>)"),
+                        .after = SiteID) %>% 
+  dplyr:: mutate(Pasture = 
+                        stringr::str_extract(Ancestry, "(?<=>\\s).*"),
+                        .after = Allotment) %>% 
+  
+  
+```
+
+# convert date column to an actual date object..
+```{r}
+df_MostRecent <- df %>% 
+  dplyr::mutate(Date = lubridate::mdy(Date)) %>% mutate(Year = lubridate::year(Date)) %>% filter(Year == max(Year))
+
+df_quadrats<- df_MostRecent %>% group_by(Ancestry,SiteID,Transect) %>% summarise(count= n_distinct(SampleNumber)) %>% group_by(Ancestry,SiteID) %>% summarise(count = sum(count))
+
+df_MostRecent<-left_join(df_MostRecent,df_quadrats,by = c("Ancestry","SiteID")) 
 ```
 
 
 ```{r}
-
+df_summed <- df_MostRecent %>% group_by(Allotment,Pasture, SiteID,count,SpeciesName)%>% distinct() %>% summarise(total=n(),Percent = (total/unique(count))*100)
 ```
 
 ## Plot
 
 ```{r Plot}
-
+ggplot(data = df_summed, aes(x = SpeciesName, y = Percent)) +
+geom_bar (stat = "identity", position = position_dodge()) + facet_wrap(~SiteID)
 ```
-
+##watching change over time, per species. rate of change. Average time for all species, functional groups, species individually.
 
 ```{r setup}
 library(grazeR)
