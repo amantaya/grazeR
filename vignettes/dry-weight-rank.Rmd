@@ -1,8 +1,8 @@
 ---
-title: "comparative-yield"
+title: "dry-weight-rank"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{comparative-yield}
+  %\VignetteIndexEntry{dry-weight-rank}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,43 +12,88 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+# remove all object from the R environment
+rm(list=ls(all=TRUE))
 ```
 
 ## Setup
 
-```{r setup}
+```{r packages}
 library("tidyverse")
+# library("grazeR")
 ```
 
 ## Load Data
 
-```{r load data}
-df <- openxlsx::read.xlsx(
-  normalizePath("./data-raw/vgs-export.xlsx"),
-  sheet = "DWR (by quadrat)")
-print(df)
+```{r interaviley choose vgs file}
+file_path <- file.choose()
+
+print(file_path)
 ```
 
-## Wrangle
+```{r load data}
+raw_data <- openxlsx::read.xlsx("../data-raw/vgs-export.xlsx",
+                          sheet = "DWR (by quadrat)")
 
-```{r print column names}
-colnames(df)
+print(raw_data)
+```
+
+```{r temp}
+sheet_names <- openxlsx::getSheetNames("./data-raw/vgs-export.xlsx")
+
+sheet_names[1]
+```
+
+```{r TODO extract read xlsx to function}
+load_data <- function(file, method) {
+  # shorten the name of the Excel sheet for the end user
+  if (method == "DWR") {
+    sheet <- "DWR (by quadrat)"
+  } else if (method == "Freq") {
+    sheet <- "Frequency (by quadrat)"
+  }
+  # TODO add logic for the other sheets
+  # TODO if the sheet name changes any, this code will break
+  # we might consider using a regex to select the sheet names and load data via an index or regex
+  openxlsx::read.xlsx(file, sheet = sheet)
+}
 ```
 
 ```{r}
-# df %>% dplyr::pull("Ancestry")
-
-df %>% slice_head()
+load_vgs_data(file= "data-raw/vgs-export.xlsx", method = "DWR")
 ```
 
 
-```{r remove columns}
-df %>% 
-  dplyr::mutate(Allotment =
-                  stringr::str_extract(Ancestry,
-                                       ".*(?=>)")) %>% 
-  dplyr::pull(Allotment)
+
+
+## Wrangle
+
+```{r temp}
+colnames(raw_data)
+``` 
+
+```{r split ancestry columns}
+dry_weight_rank <- 
+  raw_data %>% 
+  dplyr::mutate(Allotment = 
+        # regex that matches all characters before the "<" symbol
+                  stringr::str_extract(Ancestry, ".*(?=>)"),
+                .after = SiteID) %>% 
+  dplyr::mutate(Pasture = 
+        # regex that matches all characters after the "< " symbol
+                  stringr::str_extract(Ancestry, "(?<=>\\s).*"),
+                 .after = Allotment)
+print(dry_weight_rank)
 ```
+
+```{r}
+cleaned_data <- split_ancestry_column(raw_data)
+
+print(cleaned_data)
+```
+
+
 
 ## Analysis
 
@@ -56,6 +101,4 @@ df %>%
 
 ## Plot
 
-```{r setup}
-library(grazeR)
-```
+
