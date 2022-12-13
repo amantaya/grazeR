@@ -26,45 +26,160 @@ library("tidyverse")
 
 ## Load Data
 
-```{r interaviley choose vgs file}
-file_path <- file.choose()
+```{r load vgs data}
+file <- file.choose()
 
-print(file_path)
-```
-
-```{r load data}
-raw_data <- openxlsx::read.xlsx("../data-raw/vgs-export.xlsx",
-                          sheet = "DWR (by quadrat)")
+raw_data <- grazeR::load_vgs_data(file = file, method = "Freq")
 
 print(raw_data)
 ```
 
-```{r temp}
-sheet_names <- openxlsx::getSheetNames("./data-raw/vgs-export.xlsx")
+```{r}
+split_data <- grazeR::split_ancestry_column(raw_data)
 
-sheet_names[1]
+print(split_data)
+```
+Check how many allotments are in the data.
+
+```{r}
+split_data %>% dplyr::group_by(Allotment) %>% dplyr::group_keys()
 ```
 
-```{r TODO extract read xlsx to function}
-load_data <- function(file, method) {
-  # shorten the name of the Excel sheet for the end user
-  if (method == "DWR") {
-    sheet <- "DWR (by quadrat)"
-  } else if (method == "Freq") {
-    sheet <- "Frequency (by quadrat)"
-  }
-  # TODO add logic for the other sheets
-  # TODO if the sheet name changes any, this code will break
-  # we might consider using a regex to select the sheet names and load data via an index or regex
-  openxlsx::read.xlsx(file, sheet = sheet)
-}
+Check how many pastures are in the data.
+
+```{r}
+split_data %>% dplyr::group_by(Pasture) %>% dplyr::group_keys()
+```
+
+Check how many sites are in the data.
+
+```{r}
+split_data %>% dplyr::group_by(SiteID) %>% dplyr::group_keys()
+```
+
+Check how many sites are in each pasture.
+
+```{r}
+split_data %>% 
+  dplyr::group_by(Pasture, SiteID) %>% 
+  dplyr::group_keys()
+```
+
+Idea: compare Middle Ash Creek Pasture to Upper Ash Creek Pasture within the same year.
+
+Summarize species frequency for the Middle Ash Creek Pasture.
+
+```{r}
+split_data %>% 
+  dplyr::filter(Pasture == "Middle Ash Creek Pasture") %>% 
+  dplyr::group_by(SiteID, SpeciesName) %>% 
+  dplyr::count()
+```
+Summarize species frequency for the Upper Ash Creek Pasture.
+
+```{r}
+split_data %>% 
+  dplyr::filter(Pasture == "Upper Ash Creek Pasture") %>% 
+  dplyr::group_by(SiteID, SpeciesName) %>% 
+  dplyr::count()
+```
+
+Read in the NRCS plant species database.
+
+```{r}
+plant_database <- readr::read_csv("data-raw/graminoids.csv")
+
+print(plant_database)
 ```
 
 ```{r}
-load_vgs_data(file= "data-raw/vgs-export.xlsx", method = "DWR")
+colnames <- colnames(plant_database)
+print(colnames)
 ```
 
+Remove spaces from the column names.
 
+```{r}
+new_colnames <- stringr::str_replace(string = colnames, 
+                     pattern = "[[:blank:]]",
+                     replacement = "")
+colnames(plant_database) <- new_colnames
+colnames(plant_database)
+```
+
+Try to extract just the first two words from the species names from the NRCS plant database. 
+
+```{r}
+plant_database <- 
+  plant_database %>% 
+  dplyr::mutate(CleanedScientificName = 
+                  stringr::str_extract(string = plant_database$ScientificName,
+                       pattern = "\\w*\\s\\w*(?=[:space:])"))
+plant_database %>% dplyr::select(CleanedScientificName)
+```
+
+Attempt to join the growth form (i.e. functional group) to our species list. The string extract was not perfect because the NRCS database contains UTF-8 symbols, which might be an encoding issue.
+
+```{r}
+join_data <- 
+  dplyr::left_join(split_data,
+                 plant_database,
+                 by = c("SpeciesName" = "CleanedScientificName"),
+                 keep = TRUE)
+print(join_data)
+```
+
+Check to see if there are duplicate Synonym Symbol in the NRCS plant database.
+
+```{r}
+plant_database %>% 
+  dplyr::group_by(SynonymSymbol) %>% 
+  dplyr::group_keys()
+```
+Check to see if there are duplicate Accepted Symbol in the NRCS plant database.
+
+```{r}
+plant_database %>% 
+  dplyr::group_by(AcceptedSymbol) %>% 
+  dplyr::count() %>%
+  dplyr::filter(n > 1)
+```
+
+```{r}
+readr::write_csv(join_data, 
+                 file = "data/temp-joined.csv")
+```
+
+```{r}
+# TODO how we put these species into functional groups?
+
+# TODO the scientific names might be different from VGS and USDA Plant Database
+```
+
+We could figure out the species symbol from the VGS file and match it with the species symbol from the USDA plants database. We could then check if the species names match between VGS and USDA database, and if they don't match, you could use the synonym symbol to use a different scientific name.
+
+```{r eval=FALSE, include=FALSE}
+# TODO consider letting the end user filter out non-native species
+# Example function for removing non-native species from the data
+function(native = TRUE) {
+  if (native == TRUE) {
+    dplyr::filter(Introduced == FALSE)
+  } else {
+  
+}
+```
+
+Potentially you could filter by key species and plot it's trend over time.
+
+
+```{r}
+# TODO consider unbalance research design for Chi Squared tables
+# One site may have many more samples than an other
+```
+
+```{r}
+# TODO convert the Date column to Datetime class
+```
 
 
 ## Wrangle
@@ -93,12 +208,12 @@ cleaned_data <- split_ancestry_column(raw_data)
 print(cleaned_data)
 ```
 
-
-
 ## Analysis
 
 
 
 ## Plot
+
+Idea: Line chart with each function group could be a different color, shows trend over time. X axis =  time, y axis = percent 
 
 
