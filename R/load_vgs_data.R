@@ -7,19 +7,14 @@
 #' @export
 #'
 #' @examples
+#'
+#'
+# TODO I can go one of two ways, I can ask users to supply an exact input like "Freq" and then use an if else statement to select the right sheet
+# TODO or I can use a regex to pattern match and select the right sheet
+# TODO or I can specify the sheet instead of the method, but users could get the spelling slightly wrong
 load_vgs_data <- function(file, method) {
-
-  # retrieve sheet names from Excel
-  sheet_names <- openxlsx::getSheetNames(file)
-
-  # shorten the name of the Excel sheet for the end user
-  if (method == "DWR") {
-    sheet <- "DWR (by quadrat)"
-  } else if (method == "Freq") {
-    sheet <- "Frequency (by quadrat)"
-  }
-  # TODO add logic for the other sheets
-  # TODO if the sheet name changes any, this code will break
-  # we might consider using a regex to select the sheet names and load data via an index or regex
-  openxlsx::read.xlsx(file, sheet = sheet)
+    if (interactive() == TRUE) {
+      file <- file.choose()
+    }
+    openxlsx::read.xlsx(file, sheet = method)
 }
