@@ -13,8 +13,5 @@
 # TODO or I can use a regex to pattern match and select the right sheet
 # TODO or I can specify the sheet instead of the method, but users could get the spelling slightly wrong
 load_vgs_data <- function(file, method) {
-    if (interactive() == TRUE) {
-      file <- file.choose()
-    }
     openxlsx::read.xlsx(file, sheet = method)
 }
