@@ -26,10 +26,13 @@ library("tidyverse")
 
 ## Load Data
 
-```{r load vgs data}
-file <- file.choose()
+```{r}
+get_vgs_methods()
+```
 
-raw_data <- grazeR::load_vgs_data(file = file, method = "Freq")
+
+```{r load vgs data}
+raw_data <- grazeR::load_vgs_data(file, method = "Frequency (by quadrat)")
 
 print(raw_data)
 ```
