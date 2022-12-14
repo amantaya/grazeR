@@ -27,12 +27,21 @@ library("tidyverse")
 ## Load Data
 
 ```{r}
-get_vgs_methods()
+# You can interactivley choose the VGS file 
+file <- file.choose()
+
+# Or you can specify the path 
+file <- system.file("data-raw", "vgs-export", package = "grazeR")
+
+get_vgs_methods(file)
 ```
 
 
 ```{r load vgs data}
-raw_data <- grazeR::load_vgs_data(file, method = "Frequency (by quadrat)")
+raw_data <- grazeR::load_vgs_data(file = system.file("data-raw",
+                                                     "vgs-export",
+                                                     package = "grazeR"),
+                                  method = "Frequency (by quadrat)")
 
 print(raw_data)
 ```
