@@ -1,0 +1,18 @@
+title = "Custom Gitleaks Rules for the SDSU Climate Smart Project"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "hardcoded-password-rule"
+description = "Passwords in source code"
+regex = '''(?i)(?:secret|key|signature|password|pwd|pass|pw|token)(?:\w|\s*?)(?:=|<-){1}(?:\s{0,10})[\"'](.*?)[\"']'''
+tags = ["credentials", "hardcoded", "password"]
+entropy = 1.0
+
+[[rules]]
+id = "hardcoded-username-rule"
+description = "Usernames in source code"
+regex = '''(?i)(?:username|user|usr|credentials)(?:\w|\s*?)(?:=|<-){1}(?:\s{0,10})[\"'](.*?)[\"']'''
+tags = ["credentials", "hardcoded", "username"]
+entropy = 1.0

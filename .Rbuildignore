@@ -1,0 +1,4 @@
+^renv$
+^renv\.lock$
+^01-GreenFeed-API\.Rproj$
+^\.Rproj\.user$

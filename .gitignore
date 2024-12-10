@@ -1,0 +1,25 @@
+/.idea/
+
+# R environment files
+/.Renviron
+
+# renv package management
+/renv
+
+# R project files
+.Rproj.user
+
+# RPushbullet API Ket
+/.rpushbullet.json
+
+# Data directory
+/data
+
+# HTML rendered by R Markdown
+*.nb.html
+
+# xlsx files
+*.xlsx
+
+# pdf files
+*.pdf

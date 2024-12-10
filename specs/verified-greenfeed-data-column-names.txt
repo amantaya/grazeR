@@ -1,0 +1,25 @@
+RFID
+Farm Name
+FID
+Start Time
+End Time
+Good Data Duration
+Hour Of Day
+CO2 Massflow (g/d)
+CH4 Massflow (g/d)
+O2 Massflow (g/d)
+H2 Massflow (g/d)
+H2S Massflow (g/d)
+Average Airflow (L/s)
+Airflow CF
+Average Wind Speed (m/s)
+Average Wind Direction (deg)
+Wind CF
+Was Interrupted
+Interrupting Tags
+Midpoint Since Last
+Midpoint Until Next
+Standard Deviation of CH4 Baseline
+Pipe Temperature (deg C)
+Gas Temperature (deg C)
+RID

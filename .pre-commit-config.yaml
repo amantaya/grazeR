@@ -1,0 +1,5 @@
+repos:
+  - repo: https://github.com/amantaya/gitleaks
+    rev: 8.18.4.5
+    hooks:
+      - id: gitleaks
