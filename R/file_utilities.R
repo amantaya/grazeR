@@ -32,3 +32,46 @@ generate_md5_hash <- function(file_path) {
     close(con)
     return(file_hash)
 }
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#'
+#' @examples
+#'
+#' @export
+#'
+get_prelim_col_spec <- function() {
+preliminary_greenfeed_data_column_specification <-
+  readr::read_rds(
+    here::here(
+      "specs",
+      "readr",
+      "preliminary-greenfeed-data-column-specification.Rds"
+    )
+  )
+  return(preliminary_greenfeed_data_column_specification)
+}
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#'
+#' @examples
+#'
+#' @export
+#'
+get_prelim_data_schema <- function() {
+    empty_df <- readr::read_csv(
+        here::here(
+            "specs",
+            "greenfeed-prelim-data-schema.csv"
+        ),
+    col_types = get_prelim_col_spec()
+    )
+    return(empty_df)
+}
