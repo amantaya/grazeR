@@ -52,11 +52,11 @@ test_that("preliminary greenfeed data schema is correct", {
     # check if the preliminary greenfeed data schema is correct
     expect_equal(
         preliminary_greenfeed_data_schema,
-        readr::read_rds(
+        readr::read_csv(
             here::here(
                 "specs",
-                "readr",
-                "preliminary-greenfeed-data-schema.Rds"
+                "schema",
+                "preliminary-greenfeed-data-schema.csv"
             )
         )
     )
