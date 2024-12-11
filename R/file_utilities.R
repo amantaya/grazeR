@@ -41,7 +41,8 @@ generate_md5_hash <- function(file_path) {
 
 #' Get the preliminary greenfeed data column specification from an RDS file
 #'
-#' @param
+#' @param none A placeholder for the function to work with the
+#' get_prelim_data_schema function in the roxygen2 documentation.
 #'
 #' @return A readr column specification for the
 #' preliminary greenfeed data where each column is parsed
@@ -54,7 +55,7 @@ generate_md5_hash <- function(file_path) {
 #'
 #' @export
 #'
-get_prelim_col_spec <- function() {
+get_prelim_col_spec <- function(none) {
 preliminary_greenfeed_data_column_specification <-
   readr::read_rds(
     here::here(
@@ -68,7 +69,8 @@ preliminary_greenfeed_data_column_specification <-
 
 #' Get the preliminary greenfeed data schema from a CSV file
 #'
-#' @param
+#' @param none A placeholder for the function to work with the
+#' get_prelim_data_schema function in the roxygen2 documentation.
 #'
 #' @return A tibble with the standardized column names
 #' for preliminary greenfeed data that has been read
@@ -82,7 +84,7 @@ preliminary_greenfeed_data_column_specification <-
 #'
 #' @export
 #'
-get_prelim_data_schema <- function() {
+get_prelim_data_schema <- function(none) {
     empty_df <- readr::read_csv(
         here::here(
             "specs",
