@@ -1,4 +1,6 @@
 ^renv$
 ^renv\.lock$
-^01-GreenFeed-API\.Rproj$
 ^\.Rproj\.user$
+^\.gitleaks\.toml$
+^\.pre-commit-config\.yaml$
+^LICENSE\.md$
