@@ -29,3 +29,35 @@ test_that("file md5 hash is correct", {
         "78016cea74c298162366b9f86bfc3b16"
     )
 })
+
+test_that("preliminary greenfeed data column specification is correct", {
+    # get the preliminary greenfeed data column specification
+    preliminary_greenfeed_data_column_specification <- get_prelim_col_spec()
+    # check if the preliminary greenfeed data column specification is correct
+    expect_equal(
+        preliminary_greenfeed_data_column_specification,
+        readr::read_rds(
+            here::here(
+                "specs",
+                "readr",
+                "preliminary-greenfeed-data-column-specification.Rds"
+            )
+        )
+    )
+})
+
+test_that("preliminary greenfeed data schema is correct", {
+    # get the preliminary greenfeed data schema
+    preliminary_greenfeed_data_schema <- get_prelim_data_schema()
+    # check if the preliminary greenfeed data schema is correct
+    expect_equal(
+        preliminary_greenfeed_data_schema,
+        readr::read_rds(
+            here::here(
+                "specs",
+                "readr",
+                "preliminary-greenfeed-data-schema.Rds"
+            )
+        )
+    )
+})
