@@ -41,7 +41,7 @@ generate_md5_hash <- function(file_path) {
 
 #' Get the preliminary greenfeed data column specification from an RDS file
 #'
-#' @param x
+#' @param
 #'
 #' @return A readr column specification for the
 #' preliminary greenfeed data where each column is parsed
@@ -68,7 +68,7 @@ preliminary_greenfeed_data_column_specification <-
 
 #' Get the preliminary greenfeed data schema from a CSV file
 #'
-#' @param x
+#' @param
 #'
 #' @return A tibble with the standardized column names
 #' for preliminary greenfeed data that has been read
