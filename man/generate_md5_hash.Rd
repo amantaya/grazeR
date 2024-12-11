@@ -7,8 +7,17 @@
 generate_md5_hash(file_path)
 }
 \arguments{
-\item{x}{}
+\item{file_path}{A path to a file.}
+}
+\value{
+A md5 hash for the file.
 }
 \description{
 Generate md5 hash for a file
+}
+\examples{
+temp_file <- tempfile(fileext = ".txt")
+writeLines("Hello, world!", temp_file)
+md5_hash <- generate_md5_hash(temp_file)
+
 }

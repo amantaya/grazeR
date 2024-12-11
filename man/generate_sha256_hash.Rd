@@ -7,8 +7,17 @@
 generate_sha256_hash(file_path)
 }
 \arguments{
-\item{x}{}
+\item{file_path}{A path to a file.}
+}
+\value{
+A sha256 hash for the file.
 }
 \description{
 Generate sha256 hash for a file
+}
+\examples{
+temp_file <- tempfile(fileext = ".txt")
+writeLines("Hello, world!", temp_file)
+sha256_hash <- generate_sha256_hash(temp_file)
+
 }

@@ -2,13 +2,21 @@
 % Please edit documentation in R/file_utilities.R
 \name{get_prelim_col_spec}
 \alias{get_prelim_col_spec}
-\title{Title}
+\title{Get the preliminary greenfeed data column specification from an RDS file}
 \usage{
 get_prelim_col_spec()
 }
-\arguments{
-\item{x}{}
+\value{
+A readr column specification for the
+preliminary greenfeed data where each column is parsed
+according to the data type in the column specification.
 }
 \description{
-Title
+Get the preliminary greenfeed data column specification from an RDS file
+}
+\examples{
+\dontrun{
+get_prelim_col_spec()
+}
+
 }

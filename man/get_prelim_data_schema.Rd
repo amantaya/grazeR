@@ -2,13 +2,22 @@
 % Please edit documentation in R/file_utilities.R
 \name{get_prelim_data_schema}
 \alias{get_prelim_data_schema}
-\title{Title}
+\title{Get the preliminary greenfeed data schema from a CSV file}
 \usage{
 get_prelim_data_schema()
 }
-\arguments{
-\item{x}{}
+\value{
+A tibble with the standardized column names
+for preliminary greenfeed data that has been read
+in and parsed according to the
+preliminary greenfeed data column specification.
 }
 \description{
-Title
+Get the preliminary greenfeed data schema from a CSV file
+}
+\examples{
+\dontrun{
+get_prelim_data_schema()
+}
+
 }

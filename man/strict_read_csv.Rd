@@ -17,3 +17,8 @@ preliminary greenfeed data column specification.
 \description{
 strict_read_csv
 }
+\examples{
+\dontrun{
+strict_read_csv(here::here("data", "preliminary-greenfeed-data.csv"))
+}
+}
