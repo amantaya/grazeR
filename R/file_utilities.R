@@ -1,10 +1,13 @@
 #' Generate sha256 hash for a file
 #'
-#' @param x
+#' @param file_path A path to a file.
 #'
-#' @return
+#' @return A sha256 hash for the file.
 #'
 #' @examples
+#' temp_file <- tempfile(fileext = ".txt")
+#' writeLines("Hello, world!", temp_file)
+#' sha256_hash <- generate_sha256_hash(temp_file)
 #'
 #' @export
 generate_sha256_hash <- function(file_path) {
@@ -17,11 +20,14 @@ generate_sha256_hash <- function(file_path) {
 
 #' Generate md5 hash for a file
 #'
-#' @param x
+#' @param file_path A path to a file.
 #'
-#' @return
+#' @return A md5 hash for the file.
 #'
 #' @examples
+#' temp_file <- tempfile(fileext = ".txt")
+#' writeLines("Hello, world!", temp_file)
+#' md5_hash <- generate_md5_hash(temp_file)
 #'
 #' @export
 # function to open the file and create a md5 hash
@@ -33,13 +39,18 @@ generate_md5_hash <- function(file_path) {
     return(file_hash)
 }
 
-#' Title
+#' Get the preliminary greenfeed data column specification from an RDS file
 #'
 #' @param x
 #'
-#' @return
+#' @return A readr column specification for the
+#' preliminary greenfeed data where each column is parsed
+#' according to the data type in the column specification.
 #'
 #' @examples
+#' \dontrun{
+#' get_prelim_col_spec()
+#' }
 #'
 #' @export
 #'
@@ -55,13 +66,19 @@ preliminary_greenfeed_data_column_specification <-
   return(preliminary_greenfeed_data_column_specification)
 }
 
-#' Title
+#' Get the preliminary greenfeed data schema from a CSV file
 #'
 #' @param x
 #'
-#' @return
+#' @return A tibble with the standardized column names
+#' for preliminary greenfeed data that has been read
+#' in and parsed according to the
+#' preliminary greenfeed data column specification.
 #'
 #' @examples
+#' \dontrun{
+#' get_prelim_data_schema()
+#' }
 #'
 #' @export
 #'
