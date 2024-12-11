@@ -57,7 +57,8 @@ test_that("preliminary greenfeed data schema is correct", {
                 "specs",
                 "schema",
                 "preliminary-greenfeed-data-schema.csv"
-            )
+            ),
+            col_types = get_prelim_col_spec()
         )
     )
 })
