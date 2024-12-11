@@ -95,3 +95,24 @@ get_prelim_data_schema <- function(none) {
     )
     return(empty_df)
 }
+
+#' @title strict_read_csv
+#'
+#' @param data Path to a CSV file.
+#'
+#' @return A tibble with the data from the CSV file
+#' that has been read in and parsed according to the
+#' preliminary greenfeed data column specification.
+#'
+#' @examples
+#' \dontrun{
+#' strict_read_csv(here::here("data", "preliminary-greenfeed-data.csv"))
+#' }
+#' @export
+strict_read_csv <-
+    function(data) {
+      readr::read_csv(
+        data,
+        col_types = get_prelim_col_spec()
+        )
+    }
