@@ -1,0 +1,2 @@
+"FeederID","AnimalName","RFID","StartTime","EndTime","GoodDataDuration","CO2GramsPerDay","CH4GramsPerDay","O2GramsPerDay","H2GramsPerDay","H2SGramsPerDay","AirflowLitersPerSec","AirflowCf","WindSpeedMetersPerSec","WindDirDeg","WindCf","WasInterrupted","InterruptingTags","TempPipeDegreesCelsius","IsPreliminary","RunTime"
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
