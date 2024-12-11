@@ -69,7 +69,8 @@ get_prelim_data_schema <- function() {
     empty_df <- readr::read_csv(
         here::here(
             "specs",
-            "greenfeed-prelim-data-schema.csv"
+            "schema",
+            "preliminary-greenfeed-data-schema.csv"
         ),
     col_types = get_prelim_col_spec()
     )
