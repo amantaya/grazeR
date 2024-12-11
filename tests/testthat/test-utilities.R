@@ -62,3 +62,25 @@ test_that("preliminary greenfeed data schema is correct", {
         )
     )
 })
+
+test_that("strict_read_csv correctly parses data", {
+    # get the preliminary greenfeed data schema
+    strict_read_csv(
+        here::here(
+            "data",
+            "schema",
+            "preliminary-greenfeed-data.csv")
+            )
+    # check if the preliminary greenfeed data schema is correct
+    expect_equal(
+        preliminary_greenfeed_data_schema,
+        readr::read_csv(
+            here::here(
+                "specs",
+                "schema",
+                "preliminary-greenfeed-data-schema.csv"
+            ),
+            col_types = get_prelim_col_spec()
+        )
+    )
+})
