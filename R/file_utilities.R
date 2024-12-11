@@ -59,6 +59,7 @@ get_prelim_col_spec <- function(none) {
 preliminary_greenfeed_data_column_specification <-
   readr::read_rds(
     here::here(
+      "data",
       "specs",
       "readr",
       "preliminary-greenfeed-data-column-specification.Rds"
@@ -87,6 +88,7 @@ preliminary_greenfeed_data_column_specification <-
 get_prelim_data_schema <- function(none) {
     empty_df <- readr::read_csv(
         here::here(
+            "data",
             "specs",
             "schema",
             "preliminary-greenfeed-data-schema.csv"
