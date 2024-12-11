@@ -12,9 +12,6 @@
 # RPushbullet API Ket
 /.rpushbullet.json
 
-# Data directory
-/data
-
 # HTML rendered by R Markdown
 *.nb.html
 
