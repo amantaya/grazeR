@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(greenfeedR)
+library(feedr)
 
-test_check("greenfeedR")
+test_check("feedr")
