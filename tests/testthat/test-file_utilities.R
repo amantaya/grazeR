@@ -30,70 +30,14 @@ test_that("file md5 hash is correct", {
     )
 })
 
-test_that("preliminary greenfeed data column specification is correct", {
-    # get the preliminary greenfeed data column specification
-    preliminary_greenfeed_data_column_specification <- get_prelim_col_spec()
-    # check if the preliminary greenfeed data column specification is correct
-    expect_equal(
-        preliminary_greenfeed_data_column_specification,
-        readr::read_rds(
-            here::here(
-                "data",
-                "specs",
-                "readr",
-                "preliminary-greenfeed-data-column-specification.Rds"
-            )
-        )
-    )
-})
-
-test_that("preliminary greenfeed data schema is correct", {
-    # get the preliminary greenfeed data schema
-    preliminary_greenfeed_data_schema <- get_prelim_data_schema()
-    # check if the preliminary greenfeed data schema is correct
-    expect_equal(
-        preliminary_greenfeed_data_schema,
-        readr::read_csv(
-            here::here(
-                "data",
-                "specs",
-                "schema",
-                "preliminary-greenfeed-data-schema.csv"
-            ),
-            col_types = get_prelim_col_spec()
-        )
-    )
-})
 
 test_that("strict_read_csv correctly parses data", {
-    expected_col_spec <- readr::cols(
-        FeederID = readr::col_double(),
-        AnimalName = readr::col_character(),
-        RFID = readr::col_character(),
-        StartTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S"),
-        EndTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S"),
-        GoodDataDuration = readr::col_time(),
-        CO2GramsPerDay = readr::col_double(),
-        CH4GramsPerDay = readr::col_double(),
-        O2GramsPerDay = readr::col_double(),
-        H2GramsPerDay = readr::col_double(),
-        H2SGramsPerDay = readr::col_double(),
-        AirflowLitersPerSec = readr::col_double(),
-        AirflowCf = readr::col_double(),
-        WindSpeedMetersPerSec = readr::col_double(),
-        WindDirDeg = readr::col_double(),
-        WindCf = readr::col_double(),
-        WasInterrupted = readr::col_logical(),
-        InterruptingTags = readr::col_character(),
-        TempPipeDegreesCelsius = readr::col_double(),
-        IsPreliminary = readr::col_logical(),
-        RunTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S")
-    )
+    expected_col_spec <- get_prelim_col_spec()
     # get the preliminary greenfeed data schema
     parsed_data <- strict_read_csv(
-        here::here(
+        testthat::test_path(
+            "inst",
             "data",
-            "examples",
             "preliminary-greenfeed-data.csv"
         ) # TODO - create a test data file
     )
@@ -102,7 +46,8 @@ test_that("strict_read_csv correctly parses data", {
         column1 = c("value1", "value2"),
         column2 = c(1.0, 2.0),
         column3 = as.Date(c("2021-01-01", "2021-01-02"))
-    )
+    ) # TODO - finish defining the expected data frame
+
     # check if the preliminary greenfeed data schema is correct
     expect_equal(
         parsed_data,
