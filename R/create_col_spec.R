@@ -3,15 +3,15 @@
 #' @param none A placeholder for the function to work with the
 #' create_col_spec function in the roxygen2 documentation.
 #'
-#' @return
+#' @return A `readr` column specification for the preliminary greenfeed data.
 #'
 #' @examples
 #' \dontrun{
 #' create_col_spec()
 #' }
 #' @export
-create_col_spec <- function() {
-    column_spec <- readr::cols(
+create_prelim_col_spec <- function(none) {
+    prelim_column_spec <- readr::cols(
         FeederID = readr::col_double(),
         AnimalName = readr::col_character(),
         RFID = readr::col_character(),
@@ -34,13 +34,62 @@ create_col_spec <- function() {
         IsPreliminary = readr::col_logical(),
         RunTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S")
     )
-    readr::write_rds(
-        column_spec,
-        here::here(
-            "data",
-            "specs",
-            "readr",
-            "preliminary-greenfeed-data-column-specification.rds"
-        )
+    # TODO - save the column specification to a file
+}
+
+#' Get the preliminary greenfeed data column specification from an RDS file
+#'
+#' @param none A placeholder for the function to work with the
+#' get_prelim_data_schema function in the roxygen2 documentation.
+#'
+#' @return A readr column specification for the
+#' preliminary greenfeed data where each column is parsed
+#' according to the data type in the column specification.
+#'
+#' @examples
+#' \dontrun{
+#' get_prelim_col_spec()
+#' }
+#'
+#' @export
+#'
+get_prelim_col_spec <- function(none) {
+preliminary_greenfeed_data_column_specification <-
+  readr::read_rds(
+    here::here(
+      "inst",
+      "extdata",
+      "preliminary-greenfeed-data-column-specification.Rds"
     )
+  )
+  return(preliminary_greenfeed_data_column_specification)
+}
+
+#' Get the preliminary greenfeed data schema from a CSV file
+#'
+#' @param none A placeholder for the function to work with the
+#' get_prelim_data_schema function in the roxygen2 documentation.
+#'
+#' @return A tibble with the standardized column names
+#' for preliminary greenfeed data that has been read
+#' in and parsed according to the
+#' preliminary greenfeed data column specification.
+#'
+#' @examples
+#' \dontrun{
+#' get_prelim_data_schema()
+#' }
+#'
+#' @export
+#'
+get_prelim_data_schema <- function(none) {
+    empty_df <- readr::read_csv(
+        here::here(
+            "inst",
+            "extdata",
+            "preliminary-greenfeed-data-schema.csv"
+        ),
+    col_types = get_prelim_col_spec()
+    )
+    return(empty_df)
 }
