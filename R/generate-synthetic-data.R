@@ -78,7 +78,7 @@ if (!is.null(seed)) {
 sample_data <- data.frame(
     FeederID = sample(100:800, n, replace = TRUE),
     AnimalName = as.character(replicate(n, generate_rfid())),
-    RFID = AnimalName,
+    RFID = as.character(replicate(n, generate_rfid())),
     StartTime = sample(
         seq(
             lubridate::ymd_hms('2023-01-01 00:00:00'),
