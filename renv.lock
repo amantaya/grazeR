@@ -96,29 +96,6 @@
       ],
       "Hash": "859d96e65ef198fd43e82b9628d593ef"
     },
-    "dplyr": {
-      "Package": "dplyr",
-      "Version": "1.1.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "R6",
-        "cli",
-        "generics",
-        "glue",
-        "lifecycle",
-        "magrittr",
-        "methods",
-        "pillar",
-        "rlang",
-        "tibble",
-        "tidyselect",
-        "utils",
-        "vctrs"
-      ],
-      "Hash": "fedd9d00c2944ff00a0e2696ccf048ec"
-    },
     "fansi": {
       "Package": "fansi",
       "Version": "1.0.6",
