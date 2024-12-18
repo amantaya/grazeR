@@ -31,7 +31,7 @@ test_that("file md5 hash is correct", {
 })
 
 test_that("md5 hash of CSV file is correct", {
-    path <- testthat::test_path("preliminary-greenfeed-data-schema.csv")
+    path <- testthat::test_path("testdata", "preliminary-greenfeed-data-schema.csv")
 
     actual_md5hash <- generate_md5_hash(path)
 
@@ -47,7 +47,7 @@ test_that("md5 hash of CSV file is correct", {
 })
 
 test_that("sha256 hash of CSV file is correct", {
-    path <- testthat::test_path("preliminary-greenfeed-data-schema.csv")
+    path <- testthat::test_path("testdata", "preliminary-greenfeed-data-schema.csv")
 
     actual_sha256hash <- generate_sha256_hash(path)
 
