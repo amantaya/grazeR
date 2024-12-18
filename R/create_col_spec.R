@@ -53,6 +53,7 @@ create_prelim_col_spec <- function(none) {
 #'
 #' @export
 #'
+# FIXME - the RDS file does not exist yet
 get_prelim_col_spec <- function(none) {
 preliminary_greenfeed_data_column_specification <-
   readr::read_rds(
@@ -89,7 +90,7 @@ get_prelim_data_schema <- function(none) {
             "extdata",
             "preliminary-greenfeed-data-schema.csv"
         ),
-    col_types = get_prelim_col_spec()
+    col_types = create_prelim_col_spec()
     )
     return(empty_df)
 }
