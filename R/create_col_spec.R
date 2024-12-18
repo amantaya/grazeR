@@ -85,10 +85,10 @@ preliminary_greenfeed_data_column_specification <-
 #'
 get_prelim_data_schema <- function(none) {
     empty_df <- readr::read_csv(
-        here::here(
-            "inst",
+        system.file(
             "extdata",
-            "preliminary-greenfeed-data-schema.csv"
+            "preliminary-greenfeed-data-schema.csv",
+            package = "feedr"
         ),
     col_types = create_prelim_col_spec()
     )
