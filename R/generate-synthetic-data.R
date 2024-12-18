@@ -56,6 +56,9 @@ generate_rfid <- function(seed = NULL) {
 #' - IsPreliminary: A logical value indicating whether the data is preliminary.
 #' - RunTime: A datetime value corresponding to the run time.
 #'
+#' @importFrom stats runif
+#' @importFrom utils write.csv
+#'
 #' @examples
 #' \dontrun{
 #' generate_synthetic_data("data/synthetic_prelim_greenfeed_data.csv", 1000)
