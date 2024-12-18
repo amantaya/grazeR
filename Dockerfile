@@ -2,7 +2,10 @@ FROM rocker/r-ver:4.4.1
 
 RUN apt-get update && apt-get install -y \
     gpg \
-    git
+    git \
+    python3-pip
+
+RUN pip install pre-commit
 
 # Copy my .bashrc with my aliases into the container
 COPY .bashrc /root/.bashrc
