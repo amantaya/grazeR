@@ -31,17 +31,10 @@ test_that("file md5 hash is correct", {
 })
 
 test_that("md5 hash of CSV file is correct", {
-    # use the inst/extdata/preliminary-greenfeed-data-schema.csv
-    # file to test the md5 hash function
-    actual_md5hash <- generate_md5_hash(
-        testthat::test_path(
-            "..",
-            "..",
-            "inst",
-            "extdata",
-            "preliminary-greenfeed-data-schema.csv"
-        )
-    )
+    path <- testthat::test_path("preliminary-greenfeed-data-schema.csv")
+
+    actual_md5hash <- generate_md5_hash(path)
+
     actual_md5hash <- as.character(actual_md5hash)
 
     expected_md5hash <- "4710cdc12cd6f2fc62e2567dc27fe392"
@@ -54,17 +47,10 @@ test_that("md5 hash of CSV file is correct", {
 })
 
 test_that("sha256 hash of CSV file is correct", {
-    # use the inst/extdata/preliminary-greenfeed-data-schema.csv
-    # file to test the md5 hash function
-    actual_sha256hash <- generate_sha256_hash(
-        testthat::test_path(
-            "..",
-            "..",
-            "inst",
-            "extdata",
-            "preliminary-greenfeed-data-schema.csv"
-        )
-    )
+    path <- testthat::test_path("preliminary-greenfeed-data-schema.csv")
+
+    actual_sha256hash <- generate_sha256_hash(path)
+
     actual_sha256hash <- as.character(actual_sha256hash)
 
     expected_sha256hash <- "454f3eea52d6a6e935825f2e0a6614825b02d454c6038e29206d6845dbf44c36"
