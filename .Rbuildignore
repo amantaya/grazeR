@@ -4,3 +4,6 @@
 ^\.gitleaks\.toml$
 ^\.pre-commit-config\.yaml$
 ^LICENSE\.md$
+^Dockerfile$
+^\.devcontainer$
+^\.github$
