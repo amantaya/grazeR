@@ -16,5 +16,4 @@ Imports:
     here,
     lubridate,
     openssl,
-    readr,
-    tibble
+    readr
