@@ -73,6 +73,19 @@ strict_read_csv <-
 compare_file_hashes <- function(old_file, new_file) {
     old_file_hash <- generate_sha256_hash(old_file)
     new_file_hash <- generate_sha256_hash(new_file)
+
+    if (old_file_hash != new_file_hash) {
+        warning("The file hashes do not match.")
+    }
     return(old_file_hash == new_file_hash)
 }
 
+#' @title compare
+#'
+#' @param x
+#'
+#' @return
+#'
+#' @examples
+#'
+#' @export
