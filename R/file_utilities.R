@@ -39,8 +39,6 @@ generate_md5_hash <- function(file_path) {
     return(file_hash)
 }
 
-
-
 #' @title strict_read_csv
 #'
 #' @param data Path to a CSV file.
@@ -61,3 +59,20 @@ strict_read_csv <-
         col_types = get_prelim_col_spec()
         )
     }
+
+#' @title compare_file_hashes
+#'
+#' @param old_file Path to the old file.
+#' @param new_file Path to the new file.
+#'
+#' @return
+#'
+#' @examples
+#'
+#' @export
+compare_file_hashes <- function(old_file, new_file) {
+    old_file_hash <- generate_sha256_hash(old_file)
+    new_file_hash <- generate_sha256_hash(new_file)
+    return(old_file_hash == new_file_hash)
+}
+
