@@ -11,30 +11,30 @@
 #' }
 #' @export
 create_prelim_col_spec <- function(none) {
-    prelim_column_spec <- readr::cols(
-        FeederID = readr::col_double(),
-        AnimalName = readr::col_character(),
-        RFID = readr::col_character(),
-        StartTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S"),
-        EndTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S"),
-        GoodDataDuration = readr::col_time(),
-        CO2GramsPerDay = readr::col_double(),
-        CH4GramsPerDay = readr::col_double(),
-        O2GramsPerDay = readr::col_double(),
-        H2GramsPerDay = readr::col_double(),
-        H2SGramsPerDay = readr::col_double(),
-        AirflowLitersPerSec = readr::col_double(),
-        AirflowCf = readr::col_double(),
-        WindSpeedMetersPerSec = readr::col_double(),
-        WindDirDeg = readr::col_double(),
-        WindCf = readr::col_double(),
-        WasInterrupted = readr::col_logical(),
-        InterruptingTags = readr::col_character(),
-        TempPipeDegreesCelsius = readr::col_double(),
-        IsPreliminary = readr::col_logical(),
-        RunTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S")
-    )
-    # TODO - save the column specification to a file
+  prelim_column_spec <- readr::cols(
+    FeederID = readr::col_double(),
+    AnimalName = readr::col_character(),
+    RFID = readr::col_character(),
+    StartTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S"),
+    EndTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S"),
+    GoodDataDuration = readr::col_time(),
+    CO2GramsPerDay = readr::col_double(),
+    CH4GramsPerDay = readr::col_double(),
+    O2GramsPerDay = readr::col_double(),
+    H2GramsPerDay = readr::col_double(),
+    H2SGramsPerDay = readr::col_double(),
+    AirflowLitersPerSec = readr::col_double(),
+    AirflowCf = readr::col_double(),
+    WindSpeedMetersPerSec = readr::col_double(),
+    WindDirDeg = readr::col_double(),
+    WindCf = readr::col_double(),
+    WasInterrupted = readr::col_logical(),
+    InterruptingTags = readr::col_character(),
+    TempPipeDegreesCelsius = readr::col_double(),
+    IsPreliminary = readr::col_logical(),
+    RunTime = readr::col_datetime(format = "%Y-%m-%d %H:%M:%S")
+  )
+  # TODO - save the column specification to a file
 }
 
 #' Get the preliminary greenfeed data column specification from an RDS file
@@ -55,14 +55,14 @@ create_prelim_col_spec <- function(none) {
 #'
 # FIXME - the RDS file does not exist yet
 get_prelim_col_spec <- function(none) {
-preliminary_greenfeed_data_column_specification <-
-  readr::read_rds(
-    here::here(
-      "inst",
-      "extdata",
-      "preliminary-greenfeed-data-column-specification.Rds"
+  preliminary_greenfeed_data_column_specification <-
+    readr::read_rds(
+      here::here(
+        "inst",
+        "extdata",
+        "preliminary-greenfeed-data-column-specification.Rds"
+      )
     )
-  )
   return(preliminary_greenfeed_data_column_specification)
 }
 
@@ -84,13 +84,13 @@ preliminary_greenfeed_data_column_specification <-
 #' @export
 #'
 get_prelim_data_schema <- function(none) {
-    empty_df <- readr::read_csv(
-        system.file(
-            "extdata",
-            "preliminary-greenfeed-data-schema.csv",
-            package = "feedr"
-        ),
+  empty_df <- readr::read_csv(
+    system.file(
+      "extdata",
+      "preliminary-greenfeed-data-schema.csv",
+      package = "grazer"
+    ),
     col_types = create_prelim_col_spec()
-    )
-    return(empty_df)
+  )
+  return(empty_df)
 }

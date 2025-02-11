@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(feedr)
+library(grazer)
 
-test_check("feedr")
+test_check("grazer")
