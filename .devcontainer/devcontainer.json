@@ -10,6 +10,27 @@
 	},
 	"features": {
 		"ghcr.io/devcontainers/features/git:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Gruntfuggly.todo-tree",
+				"mechatroner.rainbow-csv",
+				"meakbiyik.vscode-r-test-adapter",
+				"RDebugger.r-debugger",
+				"REditorSupport.r",
+				"quarto.quarto",
+				"oderwat.indent-rainbow",
+				"Mattickx.copilotignore-vscode",
+				"mads-hartmann.bash-ide-vscode",
+				"jgclark.vscode-todo-highlight",
+				"alefragnani.Bookmarks",
+				"tomoki1207.pdf",
+				"GitHub.copilot-chat",
+				"GitHub.copilot",
+				"esbenp.prettier-vscode"
+			]
+		}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
