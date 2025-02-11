@@ -85,3 +85,57 @@ test_that("sha256 hash of CSV file is correct", {
 #         expected_data
 #         )
 # })
+
+test_that("old file and new file are equal", {
+    # create a temporary file
+    old_file <- tempfile(fileext = ".csv")
+
+    write.csv(
+        data.frame(
+            column1 = c("value1", "value2"),
+            column2 = c(1.0, 2.0),
+            column3 = as.Date(c("2021-01-01", "2021-01-02"))
+        ),
+        old_file
+    )
+
+    new_file <- tempfile(fileext = ".csv")
+
+    write.csv(
+        data.frame(
+            column1 = c("value1", "value2"),
+            column2 = c(1.0, 2.0),
+            column3 = as.Date(c("2021-01-01", "2021-01-02"))
+        ),
+        new_file
+    )
+
+    expect_equal(compare_file_hashes(old_file, new_file), TRUE)
+})
+
+test_that("old file and new file are not equal", {
+    # create a temporary file
+    old_file <- tempfile(fileext = ".csv")
+
+    write.csv(
+        data.frame(
+            column1 = c("value1", "value2"),
+            column2 = c(1.0, 2.0),
+            column3 = as.Date(c("2021-01-01", "2021-01-02"))
+        ),
+        old_file
+    )
+
+    new_file <- tempfile(fileext = ".csv")
+
+    write.csv(
+        data.frame(
+            column1 = c("value1", "value3"),
+            column2 = c(1.0, 2.0),
+            column3 = as.Date(c("2021-01-01", "2021-01-02"))
+        ),
+        new_file
+    )
+
+    expect_equal(compare_file_hashes(old_file, new_file), FALSE)
+})
