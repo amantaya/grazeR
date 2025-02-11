@@ -79,13 +79,3 @@ compare_file_hashes <- function(old_file, new_file) {
     }
     return(old_file_hash == new_file_hash)
 }
-
-#' @title compare
-#'
-#' @param x
-#'
-#' @return
-#'
-#' @examples
-#'
-#' @export
