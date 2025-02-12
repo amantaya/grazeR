@@ -25,6 +25,7 @@ validate_eid_prefix <- function(eid) {
     if (is.na(eid)) {
         return(FALSE)
     }
+    # TODO change to 3 digits
     first_four_digits <- substr(eid, 1, 4)
     # TODO: Add support for other EID prefixes (e.g., 840, 982, 985, 942, 949)
     # "840" maps USA country code and is also USDA official animal identification number (AIN)
