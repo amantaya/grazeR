@@ -1,0 +1,38 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "R",
+			"code": [
+				"devtools::test()"
+			],
+			"problemMatcher": [
+				"$testthat"
+			],
+			"group": "test",
+			"label": "R: Test"
+		},
+		{
+			"type": "R",
+			"code": [
+				"testthat::test_file(\"${file}\")"
+			],
+			"problemMatcher": [
+				"$testthat"
+			],
+			"group": "test",
+			"label": "R: Test (Current File)"
+		},
+		{
+			"type": "R",
+			"code": [
+				"testthat::test_dir('tests/testthat', reporter = 'progress')"
+			],
+			"problemMatcher": [
+				"$testthat"
+			],
+			"group": "test",
+			"label": "R: Test Directory"
+		}
+	]
+}
