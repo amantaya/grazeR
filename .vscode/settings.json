@@ -1,3 +1,4 @@
 {
-    "r.rterm.linux": "/usr/local/bin/R"
+    "r.rterm.linux": "/usr/local/bin/R",
+    "RTestAdapter.RscriptPath": "/usr/local/bin/Rscript"
 }
