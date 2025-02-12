@@ -5,14 +5,12 @@
 #' @return A logical value indicating whether the EID is of the correct length.
 #'
 #' @examples
-#'
 #' @export
 validate_eid_length <- function(eid) {
-    if (nchar(eid) != 15) {
+    if (is.na(eid)) {
         return(FALSE)
-    } else if (nchar(eid) == 15) {
-        return(TRUE)
     }
+    return(nchar(eid) == 15)
 }
 
 #' @title Validate EID Prefix
@@ -22,12 +20,11 @@ validate_eid_length <- function(eid) {
 #' @return A logical value indicating whether the EID has the correct prefix.
 #'
 #' @examples
-#'
 #' @export
 validate_eid_prefix <- function(eid) {
-    first_four_digits <- substr(eid, 1, 4)
-    if (first_four_digits != "9820") {
+    if (is.na(eid)) {
         return(FALSE)
     }
-    return(TRUE)
+    first_four_digits <- substr(eid, 1, 4)
+    return(first_four_digits == "9820")
 }
