@@ -26,5 +26,8 @@ validate_eid_prefix <- function(eid) {
         return(FALSE)
     }
     first_four_digits <- substr(eid, 1, 4)
+    # TODO: Add support for other EID prefixes (e.g., 840, 982, 985, 942, 949)
+    # "840" maps USA country code and is also USDA official animal identification number (AIN)
+    # 982 for Allflex, 985 for Destron Fearing, 942 for Z Tags, 949 for Y-TEX) https://www.leedstone.com/university/cattle-id-tag-terminology-article/?srsltid=AfmBOoqfWaeuEn1k7fgHejyMNJAIT5o8LPgx9pYNbiiYIfT_3AXlENdZ
     return(first_four_digits == "9820")
 }
