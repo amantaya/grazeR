@@ -37,3 +37,7 @@ ENV RENV_PATHS_LIBRARY=/home/app/renv/library
 
 # Activate the renv environment
 RUN R -e "renv::restore()"
+
+RUN R -e "install.packages('devtools')"
+
+RUN R -e "install.packages('languageserver')"
