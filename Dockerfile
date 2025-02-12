@@ -14,11 +14,12 @@ COPY .bashrc /root/.bashrc
 # to move the aliases into the container's environment
 RUN echo "source /root/.bashrc" >> /root/.bash_profile
 
+# Install devtools into the default library location
+# This is required for the R Test Explorer to work
+RUN R -e "install.packages('devtools')"
+
 # install renv to install the packages from the lockfile
 RUN R -e "install.packages('renv', repos = c(CRAN = 'https://cloud.r-project.org'))"
-
-# install devtools into the default library location
-RUN R -e "install.packages('devtools')"
 
 # Copy the renv lockfile during build into the container
 COPY renv.lock renv.lock
@@ -41,6 +42,9 @@ ENV RENV_PATHS_LIBRARY=/home/app/renv/library
 # Activate the renv environment
 RUN R -e "renv::restore()"
 
+# Install the devtools package into the renv library
+# Different from the default library location
 RUN R -e "install.packages('devtools')"
 
+# Install the languageserver package into the renv library
 RUN R -e "install.packages('languageserver')"
