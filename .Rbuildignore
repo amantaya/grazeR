@@ -8,3 +8,4 @@
 ^\.devcontainer$
 ^\.github$
 ^\.bashrc$
+^\.vscode$
