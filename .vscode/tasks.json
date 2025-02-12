@@ -33,6 +33,16 @@
 			],
 			"group": "test",
 			"label": "R: Test Directory"
+		},
+		{
+			"type": "R",
+			"code": [
+				"devtools::check()"
+			],
+			"problemMatcher": [
+			],
+			"group": "build",
+			"label": "R: Check Package"
 		}
 	]
 }
