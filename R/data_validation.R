@@ -49,3 +49,19 @@ validate_eid_prefix <- function(eid) {
     )
     return(first_three_digits %in% accepatble_prefixes)
 }
+
+#' @title Get Length of EID
+#'
+#' @param eid A character string representing
+#' the electronic identification number (EID) of an animal.
+#'
+#' @return An integer representing the length of the EID.
+#'
+#' @examples
+#' get_eid_length("123456789012345") # returns 15
+#'
+#' @export
+#' @importFrom stringr str_length
+get_eid_length <- function(eid) {
+    return(stringr::str_length(eid))
+    }
