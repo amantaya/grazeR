@@ -15,7 +15,8 @@ validate_eid_length <- function(eid) {
 
 #' @title Validate EID Prefix
 #'
-#' @param eid A character string representing the electronic identification number (EID) of an animal.
+#' @param eid A character string representing
+#' the electronic identification number (EID) of an animal.
 #'
 #' @return A logical value indicating whether the EID has a valid prefix.
 #'
@@ -26,6 +27,13 @@ validate_eid_prefix <- function(eid) {
         return(FALSE)
     }
     first_three_digits <- substr(eid, 1, 3)
-    accepatble_prefixes <- c("840", "982", "985", "942", "949") # NOTE: this is not a complete list
+    # NOTE: this is not a complete list of acceptable prefixes
+    accepatble_prefixes <- c(
+        "840", # USA Country Code - USDA AIN Complaint
+        "982", # Allflex
+        "985", # Destron Fearing
+        "942", # Zee Tags
+        "949" # Y-Tex
+    )
     return(first_three_digits %in% accepatble_prefixes)
 }
