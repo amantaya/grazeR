@@ -57,3 +57,23 @@ test_that("eid that is NA returns NA", {
 test_that("eid as integer of length 15 returns 15", {
   expect_equal(get_eid_length(123456789012345), 15)
 })
+
+test_that("get_eid_type returns correct type for valid prefixes", {
+  expect_equal(get_eid_type("840012345678901"), "USDA Animal Identification Number")
+  expect_equal(get_eid_type("982012345678901"), "Allflex")
+  expect_equal(get_eid_type("985012345678901"), "Destron Fearing")
+  expect_equal(get_eid_type("942012345678901"), "Zee Tags")
+  expect_equal(get_eid_type("949012345678901"), "Y-Tex")
+})
+
+test_that("get_eid_type returns NA_character_ for invalid prefix", {
+  expect_equal(get_eid_type("123456789012345"), NA_character_)
+})
+
+test_that("get_eid_type returns NA_character_ for NA input", {
+  expect_equal(get_eid_type(NA), NA_character_)
+})
+
+test_that("get_eid_type returns NA_character_ for empty string", {
+  expect_equal(get_eid_type(""), NA_character_)
+})
