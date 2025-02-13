@@ -7,11 +7,18 @@
 validate_eid_prefix(eid)
 }
 \arguments{
-\item{eid}{A character string representing the electronic identification number (EID) of an animal.}
+\item{eid}{A character string representing
+the electronic identification number (EID) of an animal.}
 }
 \value{
-A logical value indicating whether the EID has the correct prefix.
+A logical value indicating whether the EID has a valid prefix.
 }
 \description{
 Validate EID Prefix
+}
+\examples{
+valid_eid <- "982012345678901"
+validate_eid_prefix(valid_eid) # returns TRUE
+invalid_eid <- "123456789012345"
+validate_eid_prefix(invalid_eid) # returns FALSE
 }

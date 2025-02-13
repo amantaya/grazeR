@@ -7,11 +7,19 @@
 validate_eid_length(eid)
 }
 \arguments{
-\item{eid}{A character string representing the electronic identification number (EID) of an animal.}
+\item{eid}{A character string representing
+the electronic identification number (EID) of an animal.}
 }
 \value{
 A logical value indicating whether the EID is of the correct length.
 }
 \description{
 Validate EID Length
+}
+\examples{
+valid_eid <- "123456789012345"
+validate_eid_length(valid_eid) # returns TRUE
+invalid_eid <- "12345678901234"
+validate_eid_length(invalid_eid) # returns FALSE
+
 }

@@ -11,6 +11,23 @@ compare_file_hashes(old_file, new_file)
 
 \item{new_file}{Path to the new file.}
 }
+\value{
+A Boolean value (TRUE/FALSE) indicating whether the file hashes match.
+}
 \description{
 compare_file_hashes
+}
+\examples{
+old_file <- tempfile(fileext = ".txt")
+new_file <- tempfile(fileext = ".txt")
+writeLines("Hello, world!", old_file)
+writeLines("Hello, world!", new_file)
+compare_file_hashes(old_file, new_file) # returns TRUE
+
+old_file <- tempfile(fileext = ".txt")
+new_file <- tempfile(fileext = ".txt")
+writeLines("Hello, world!", old_file)
+writeLines("Goodbye, world!", new_file)
+compare_file_hashes(old_file, new_file) # returns FALSE
+
 }
