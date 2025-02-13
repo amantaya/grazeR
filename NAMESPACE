@@ -2,8 +2,8 @@
 
 export(compare_file_hashes)
 export(create_prelim_col_spec)
+export(generate_eid)
 export(generate_md5_hash)
-export(generate_rfid)
 export(generate_sha256_hash)
 export(generate_synthetic_data)
 export(get_eid_length)

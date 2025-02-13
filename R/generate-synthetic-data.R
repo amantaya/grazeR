@@ -5,14 +5,16 @@
 #' @return A numeric value corresponding to the RFID. The first 9 digits are all zeros. The last 15 digits are randomly generated.
 #'
 #' @examples
-#' generate_rfid(seed = 123)
+#' generate_eid(seed = 123)
 #'
 #' @export
-generate_rfid <- function(seed = NULL) {
+# TODO - create an alias for this function called `generate_rfid`
+generate_eid <- function(seed = NULL) {
     # if seed is not NULL, set the supplied seed for reproducibility
     if (!is.null(seed)) {
     set.seed(seed)
     } else {
+    # TODO - remove this line. Seeds should be set by the user.
     set.seed(123)
     }
     # Generate the last 15 digits as a random number
@@ -77,8 +79,8 @@ if (!is.null(seed)) {
 # Generate sample data
 sample_data <- data.frame(
     FeederID = sample(100:800, n, replace = TRUE),
-    AnimalName = as.character(replicate(n, generate_rfid())),
-    RFID = as.character(replicate(n, generate_rfid())),
+    AnimalName = as.character(replicate(n, generate_eid())),
+    RFID = as.character(replicate(n, generate_eid())),
     StartTime = sample(
         seq(
             lubridate::ymd_hms('2023-01-01 00:00:00'),
@@ -110,7 +112,7 @@ sample_data <- data.frame(
     WindDirDeg = round(runif(n, 0, 360), 2), # NOTE: may need to adjust the range
     WindCf = round(runif(n, 0, 100), 2), # NOTE: may need to adjust the range
     WasInterrupted = sample(c(TRUE, FALSE), n, replace = TRUE),
-    InterruptingTags = as.character(replicate(n, generate_rfid())), # NOTE: most of the observations will be NA. We need to inject the a realistic number of interruptions.
+    InterruptingTags = as.character(replicate(n, generate_eid())), # NOTE: most of the observations will be NA. We need to inject the a realistic number of interruptions.
     TempPipeDegreesCelsius = round(runif(n, 0, 100), 2), # NOTE: may need to adjust the range
     IsPreliminary = rep(1, n), # NOTE: 1 is a logical for TRUE
     RunTime = sample(
