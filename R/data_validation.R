@@ -79,7 +79,6 @@ get_eid_length <- function(eid) {
 #' get_eid_type("840012345678901") # returns "USDA Animal Identification Number"
 #' get_eid_type("123456789012345") # returns NA_character_
 #' get_eid_type(NA) # returns NA_character_
-#' @importFrom magrittr %||%
 #' @export
 get_eid_type <- function(eid) {
     if (is.na(eid)) {
@@ -101,3 +100,4 @@ get_eid_type <- function(eid) {
         return(NA_character_)
     }
 }
+# TODO - add a function for substringing the prefix first 3 digits
