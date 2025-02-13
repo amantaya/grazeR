@@ -18,8 +18,24 @@ test_that("eid with incorrect prefix returns FALSE", {
   expect_equal(validate_eid_prefix("123456789012345"), FALSE)
 })
 
-test_that("eid with correct prefix returns TRUE", {
+test_that("eid with correct 982 prefix returns TRUE", {
   expect_equal(validate_eid_prefix("982012345678901"), TRUE)
+})
+
+test_that("eid with correct 985 prefix returns TRUE", {
+  expect_equal(validate_eid_prefix("985012345678901"), TRUE)
+})
+
+test_that("eid with correct 840 prefix returns TRUE", {
+  expect_equal(validate_eid_prefix("840012345678901"), TRUE)
+})
+
+test_that("eid with correct 942 prefix returns TRUE", {
+  expect_equal(validate_eid_prefix("942012345678901"), TRUE)
+})
+
+test_that("eid with correct 949 prefix returns TRUE", {
+  expect_equal(validate_eid_prefix("949012345678901"), TRUE)
 })
 
 test_that("eid with missing value returns FALSE", {

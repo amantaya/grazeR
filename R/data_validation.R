@@ -17,7 +17,7 @@ validate_eid_length <- function(eid) {
 #'
 #' @param eid A character string representing the electronic identification number (EID) of an animal.
 #'
-#' @return A logical value indicating whether the EID has the correct prefix.
+#' @return A logical value indicating whether the EID has a valid prefix.
 #'
 #' @examples
 #' @export
@@ -25,11 +25,7 @@ validate_eid_prefix <- function(eid) {
     if (is.na(eid)) {
         return(FALSE)
     }
-    # TODO change to 3 digits
-    first_four_digits <- substr(eid, 1, 4)
-    # TODO: Add support for other EID prefixes (e.g., 840, 982, 985, 942, 949)
-    # "840" maps USA country code and is also USDA official animal identification number (AIN)
-    # 982 for Allflex, 985 for Destron Fearing, 942 for Z Tags, 949 for Y-TEX)
-    # https://www.leedstone.com/university/cattle-id-tag-terminology-article/?srsltid=AfmBOoqfWaeuEn1k7fgHejyMNJAIT5o8LPgx9pYNbiiYIfT_3AXlENdZ
-    return(first_four_digits == "9820")
+    first_three_digits <- substr(eid, 1, 3)
+    accepatble_prefixes <- c("840", "982", "985", "942", "949") # NOTE: this is not a complete list
+    return(first_three_digits %in% accepatble_prefixes)
 }
