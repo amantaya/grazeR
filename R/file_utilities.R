@@ -65,9 +65,20 @@ strict_read_csv <-
 #' @param old_file Path to the old file.
 #' @param new_file Path to the new file.
 #'
-#' @return
+#' @return A Boolean value (TRUE/FALSE) indicating whether the file hashes match.
 #'
 #' @examples
+#' old_file <- tempfile(fileext = ".txt")
+#' new_file <- tempfile(fileext = ".txt")
+#' writeLines("Hello, world!", old_file)
+#' writeLines("Hello, world!", new_file)
+#' compare_file_hashes(old_file, new_file) # returns TRUE
+#'
+#' old_file <- tempfile(fileext = ".txt")
+#' new_file <- tempfile(fileext = ".txt")
+#' writeLines("Hello, world!", old_file)
+#' writeLines("Goodbye, world!", new_file)
+#' compare_file_hashes(old_file, new_file) # returns FALSE
 #'
 #' @export
 compare_file_hashes <- function(old_file, new_file) {
