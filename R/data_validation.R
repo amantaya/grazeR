@@ -100,4 +100,22 @@ get_eid_type <- function(eid) {
         return(NA_character_)
     }
 }
-# TODO - add a function for substringing the prefix first 3 digits
+
+#' @title Get the Prefix of an EID
+#'
+#' @param eid A character string representing
+#' the electronic identification number (EID) of an animal.
+#'
+#' @return A character string with the first three digits of the EID.
+#'
+#' @examples
+#' get_eid_prefix("982012345678901") # returns "982"
+#' get_eid_prefix("985012345678901") # returns "985"
+#'
+#' @export
+get_eid_prefix <- function(eid) {
+    if (is.na(eid)) {
+        return(NA_character_)
+    }
+    return(substr(eid, 1, 3))
+}

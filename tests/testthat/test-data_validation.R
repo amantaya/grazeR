@@ -77,3 +77,34 @@ test_that("get_eid_type returns NA_character_ for NA input", {
 test_that("get_eid_type returns NA_character_ for empty string", {
   expect_equal(get_eid_type(""), NA_character_)
 })
+
+test_that("get_eid_prefix returns correct prefix for valid character EID", {
+  expect_equal(get_eid_prefix("982012345678901"), "982")
+  expect_equal(get_eid_prefix("985012345678901"), "985")
+  expect_equal(get_eid_prefix("840012345678901"), "840")
+  expect_equal(get_eid_prefix("942012345678901"), "942")
+  expect_equal(get_eid_prefix("949012345678901"), "949")
+})
+
+
+test_that("get_eid_prefix returns correct prefix for valid integer EID", {
+  expect_equal(get_eid_prefix(982012345678901), "982")
+  expect_equal(get_eid_prefix(985012345678901), "985")
+  expect_equal(get_eid_prefix(840012345678901), "840")
+  expect_equal(get_eid_prefix(942012345678901), "942")
+  expect_equal(get_eid_prefix(949012345678901), "949")
+})
+
+test_that("get_eid_prefix returns NA_character_ for NA input", {
+  expect_equal(get_eid_prefix(NA), NA_character_)
+})
+
+test_that("get_eid_prefix returns correct prefix for short EID", {
+  expect_equal(get_eid_prefix("123"), "123")
+  expect_equal(get_eid_prefix("12"), "12")
+  expect_equal(get_eid_prefix("1"), "1")
+})
+
+test_that("get_eid_prefix returns empty string for empty input", {
+  expect_equal(get_eid_prefix(""), "")
+})
