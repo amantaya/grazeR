@@ -28,7 +28,9 @@
 				"tomoki1207.pdf",
 				"GitHub.copilot-chat",
 				"GitHub.copilot",
-				"esbenp.prettier-vscode"
+				"esbenp.prettier-vscode",
+				"github.vscode-github-actions",
+				"bmalehorn.shell-syntax"
 			]
 		}
 	}
